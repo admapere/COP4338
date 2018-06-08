@@ -1,0 +1,200 @@
+/*=========================================================================
+|Source Code: tempChart.c
+|     Author: Adrian Manuel Perez
+| Student ID: 3180957
+| Assignment: Program #1 - Temperature Chart
+|
+|     Course: COP 4338 (Advanced Programming)
+|    Section: U01
+| Instructor: William Field
+|   Due Date: 30 January 2018, beginning of class
+|	
+|		  I hereby certify that this collective work is my own
+|		  and none of it is the work of any other person or entity.
+|		   _____________________________________________[Signature]
+|
+|   Language: C
+|Compile/Run: gcc tempChart.c -o tempChart.out
+|		      ./tempChart.out
+|	
+|+------------------------------------------------------------------------
+|
+|Description: Print out a temperature chart of celsius to fahrenheit
+|             and fahrenheit to celsius, using the formulas:
+|			  
+|             Fahr = Cels * 1.8 + 32
+|             Cels = (Fahr - 32) / 1.8
+|
+|             It takes in user input to determine the steps in
+|             the entries.
+|
+|      Input: User inputs an integer in the given interval. This 
+|             determines size of the step between one entry
+|             and the next.
+|
+|     Output: A conversion chart from Fahrenheit to Celsius and 
+|             Celsius to Fahrenheit.
+|
+|    Process: Prints out a prompt asking for user to input an integer
+|             in the given interval. Then it prints out the formatted
+|             chart.   
+|Missing Features: Does not guard against the user inputting a string.
+|      Known Bugs: none 
+|*=======================================================================*/
+
+/*-------- Includes --------*/
+#include <stdio.h>
+
+/*-------- Defines --------*/
+#define LOWER_INTERVAL 1   /*intervals for user input*/
+#define UPPER_INTERVAL 9
+#define LOWER_BOUND -20.0  /*lower and upper bounds for chart */
+#define UPPER_BOUND 280.0
+#define NEWLINE_BREAK 8    /*interval for linebreaks*/
+#define COLUMN_WIDTH 12    /*width of columns*/
+#define NO_ERROR 0         /*main ends with no error*/
+
+/*-------- Global Variables --------*/
+enum boolean {FALSE , TRUE};
+
+/*-------- Function Prototypes --------*/
+float celsiusToFahrenheit(float inputTemp);
+float fahrenheitToCelsius(float inputTemp);
+void printChart(int input);
+int validate(int input);
+
+int main(void)
+{
+	const char *PROMPT = "Please input an integer in the interval[%d,%d]\n";
+	const char *REPROMPT = "Please make sure your input is an integer in "
+                               "the interval[%d,%d]\n";
+	int input = 0;
+	int isValid = FALSE;
+	
+	/*
+	* Prints the prompt for a user to input a value in the interval.
+	* If the user fails to do so, they are prompted again to correct
+	* their input.
+	*/
+	printf(PROMPT, LOWER_INTERVAL, UPPER_INTERVAL);     
+	do{
+		scanf("%d", &input);
+		isValid = validate(input);
+
+		if( isValid == FALSE)
+		{
+			printf(REPROMPT, LOWER_INTERVAL, UPPER_INTERVAL);
+		}			
+	}
+	while( isValid == FALSE );
+	
+	printChart(input);
+	
+	return NO_ERROR;	
+}//end of main
+
+/*-------- celsiusToFahrenheit --------
+| Function: celsiusToFahrenheit
+|  Purpose: convert from celsius to fahrenheit using formula:
+|           Fahrenheit = Celsius * 1.8 + 32
+|
+|   @param: scalar variable in celsius
+|   
+|  @return: temperature in fahrenheit
+*------------------------------------*/
+
+float celsiusToFahrenheit(float inputTemp)
+{
+	return inputTemp * 1.8 + 32;
+}//end function
+
+/*-------- fahrenheitToCelsius --------
+| Function: fahrenheitToCelsius
+|  Purpose: convert from fahrenheit to celsius using formula:
+|           Celsius = (Fahrenheit - 32) / 1.8
+|
+|   @param: scalar variable in fahrenheit
+|   
+|  @return: temperature in celsius
+*------------------------------------*/
+
+float fahrenheitToCelsius(float inputTemp)
+{
+	return (inputTemp - 32) / 1.8;
+}//end function
+
+/*-------- printChart --------
+| Function: printChart
+|  Purpose: prints chart of temperature conversions
+|
+|   @param: none
+|
+|  @return: none
+*------------------------------------*/
+
+void printChart(int input)
+{
+	float lowerBound = 0;
+	float upperBound = 0;
+	int loopCounter = 0;
+
+	const char *FAHR = "Fahrenheit";
+	const char *CELS = "Celsius";
+	const char *DIVIDER = "===============================================";
+	/*
+	* Prints the header of the table first, then it loops from the lower
+	* to the upper bound, printing out each line with the conversions
+	* right justified. The Loopcounter counts, how many newlines have
+	* been printed; after ten newlines, a blank line is inserted.
+	*/
+
+	//prints header of the chart
+	
+	//prints header row
+	printf("%*s",COLUMN_WIDTH, FAHR);
+	printf("%*s",COLUMN_WIDTH, CELS);
+	printf("%*s",COLUMN_WIDTH, CELS);
+	printf("%*s",COLUMN_WIDTH, FAHR);
+	putchar('\n');
+	
+	//prints divider
+	printf("%s\n", DIVIDER);
+	
+	//prints a row of the chart
+	for(lowerBound = LOWER_BOUND, loopCounter = 1;
+        lowerBound <= UPPER_BOUND;
+		lowerBound += input, loopCounter++)
+	{
+		printf("%*.1f",COLUMN_WIDTH, lowerBound);
+		printf("%*.1f",COLUMN_WIDTH, fahrenheitToCelsius(lowerBound));
+		printf("%*.1f",COLUMN_WIDTH, lowerBound);
+		printf("%*.1f",COLUMN_WIDTH, celsiusToFahrenheit(lowerBound));
+		putchar('\n');
+		//prints a divider line
+		if(loopCounter % NEWLINE_BREAK == 0)
+		{
+			printf("%s\n", DIVIDER);	
+		}
+	}
+}//end function
+
+/*-------- validate --------
+| Function: validate
+|  Purpose: makes sure that user's input is valid
+|
+|   @param: input from user
+|
+|  @return: if no errors: TRUE = 1 , otherwise FALSE = 0
+*------------------------------------*/
+
+int validate(int input)
+{
+	if(input < LOWER_INTERVAL || input > UPPER_INTERVAL)
+	{
+		return FALSE ;
+	}
+	else
+	{
+		return TRUE;
+	}
+}//end function

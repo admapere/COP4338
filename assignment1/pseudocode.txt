@@ -1,0 +1,74 @@
+/*-------- includes --------*/
+<stdio.h>
+
+/*-------- defines --------*/
+{LOWER_INTERVAL, UPPER_INTERVAL} // Intervals for the input range
+{LOWER_BOUND, UPPER_BOUND}   // Bounds for the chart
+NEWLINE_BREAK            // How often to break up the chart
+
+/*-------- Global Variables --------*/
+enum boolean {true, false}
+
+/*-------- function prototypes --------*/
+float celsiusToFahrenheit(float inputTemp)
+float fahrenheitToCelsius(float inputTemp)
+void printChart(int input)
+int validate (int input)
+
+/*-------- main --------*/
+
+print("instructions to the user")
+
+int input, validationFlag
+do
+    input = scan("input from user")
+    validationFlag == validate(input)
+    if (validationFlag == FALSE)
+        print("remind user of proper instructions")
+while(validationFlag == FALSE)
+
+printChart(input)
+
+/*-------- fahrenheitToCelsius --------*/
+@param  : float input (input temperature in fahrenheit)
+@return : float (converted temperature in celsius)
+
+return input * 1.8 + 32
+
+/*-------- fahrenheitToCelsius --------*/
+@param  : float input = (input temperature in celsius)
+@return : float (converted temperature in fahrenheit)
+
+return (input - 32) / 1.8 
+
+
+/*-------- printChart --------*/
+@param  : int input (user determined chart "step")
+@return : void
+
+print("table header")
+
+TABLE HEADER FORMAT BELOW:
+
+Fahrenheit        Celsius                Celsius        Fahrenheit
+==================================================================
+     -80.0      -62.2          -80.0        -112.0
+     -75.0      -59.4          -75.0        -103.0
+
+
+for(index = LOWER_BOUND, counter = 1;
+    index < LOWER_BOUND; 
+    index += input, counter++)
+    
+    print("formatted text with conversions")
+    
+    if(counter % 10 == 0)
+        print(newline)
+endLoop
+
+/*-------- validate --------*/
+
+if(input < LOWER_BOUND OR input > UPPER_BOUND)
+    return ERROR
+else
+    return NO_ERROR

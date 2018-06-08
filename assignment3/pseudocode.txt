@@ -1,0 +1,47 @@
+/*Source Files*/
+
+card_game.c
+        int main()
+        int validate(*argc,*argv)
+        void display_hand(*player)
+        void display_deck(*deck*)
+
+deck.c
+        /*Variables*/
+	/*Functions*/
+        
+	int* new_deck(int* deck)
+		loop through whole array
+			deck[index] = index
+                endloop
+	return deck
+	endfunc
+
+        int* shuffle_deck(int* deck)
+		loop through whole array
+			swap index with random number
+		endloop
+	endfunc
+
+        int[] draw_card(int* deck)
+		topcard = deck
+		*deck += (size of int)	
+		return array[topcard, deck]
+	endfunc
+
+        char* deck_to_string(*int deck)
+		
+	endFunc
+
+player.c
+        /*Variables*/
+        int[][] player,hand
+        
+        /*Functions*/
+        int* get_player()
+        int* get_hand()
+        char* player_to_string(int* player, int* hand)
+
+
+
+ 

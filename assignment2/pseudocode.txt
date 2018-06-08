@@ -1,0 +1,39 @@
+<includes>
+    stdio
+    math.h
+
+<defines>
+    MIN_INTERVAL 
+    MAX_INTERVAL
+    MAX_ERROR
+
+<subroutines>
+    int aliquotSum(int divisorSequence[])
+        sum {1,2,4,7,14}
+
+    double babSqrt(double, double, int, int)
+        babylonian method
+
+    int* createFactorList(int)
+        loop
+            create list {1,2,4,...,7,14,28}
+        concatenate list
+            list -> {1,2,4,7,14,28,-1}
+    
+    int detmineInitialGuess(double)
+        iterate through perfect squares
+    
+    void printChart(double,double,int,int)
+        prints formatted chart
+    
+    void printSum(int, int*)
+        prints formatted sum {1+2+4+..}
+<main>
+    loops through inteval [MIN,MAX}
+        create factor list for interval
+        aliquot sum of list
+        compare sum and number
+            if perfect
+            print sum and chart
+            else continue
+    endloop

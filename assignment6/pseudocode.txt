@@ -1,0 +1,44 @@
+main
+	validate input
+	obtain memory
+	initialize memory
+	create children
+	if
+		child process
+	else
+		parent process
+	
+obtain memory
+	ask OS for shared memory
+	attach memory from OS
+
+init memory
+	copy from passed args to shared memory
+
+create children
+	for all children in array
+		fork child
+	set child id
+
+parent process
+	check that all children are done
+	print status of the shared memory
+	detach the memory
+	destroy the memory
+
+//utility functions//
+
+arr_to_string
+	for each element in source
+		print formated output to destination
+	return number of printed values
+
+find pid
+	linear search algorithm 
+
+validate input
+	check if argc is out of bounds
+
+	check if argv is out of bounds or incorrect
+
+	add argv to data array

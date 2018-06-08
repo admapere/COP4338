@@ -1,0 +1,77 @@
+Adrian Manuel Perez
+COP 4338 U01 Programming III
+William Feild
+Assigment 5
+
+
+validateMain.c
+    main
+        verify_inputs
+        while new_line
+            parse_date()
+                print errors
+            print_parsed_dates
+        return EXIT_SUCCESS
+
+    verify_inputs(int argc, const char **argv, int count)
+        if argc >  EXPECTED_ARG_VAL
+            print "error"
+            exit(FAIL)
+        
+        if argc < EXPECTED_ARG_VAL
+            print "error"
+            exit(FAIL)
+       
+        count = parse argv[1]
+        if outOfBounds(argv[1])
+            print "error"
+            exit(FAIL)
+        if isNotInt(argv[1])
+            print "error"
+            exit(FAIL)
+        return TRUE
+
+validate.c
+   parse_date(int arr[], char *date)
+       while scan_next_delimeter == 1
+            error check scanned delimeters
+            scanned delimeters put into array
+        return TRUE
+    
+    validate_date
+        static array of dates [31, 28, 31, ...], [31, 29, 31, ...]
+        check_if_leapyear //leap year determines which array to use
+        check if months and days work together
+        return TRUE
+    
+    is_leap_year
+        if not divisible by 4
+            is common year
+        else if not divisible by 100
+            is leap_year
+        else if year is not divisible by 400
+            is common year
+        else is leap year
+
+displayMain
+    main
+        while read each line from stdin
+            convert_to_date(input_line)
+            print to_string()
+        print_orginal_file()
+
+    print_original_file
+        while stdin has next line
+            print_next_line
+
+display
+    create_date(int arr[], const *char string)
+        tokenize string
+        put tokens into array
+    
+    print_to_string(int[])
+        day, use / and %
+        month, use / and %
+
+        year, use atoi
+    
